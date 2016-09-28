@@ -237,7 +237,7 @@ OSREC.CurrencyFormatter.format(2534234, { currency: 'EUR', lcoale: 'fr' }); // R
  
 </p>
 
-<h4 class='subheading'>&rsaquo; Example 1: Format all element values into currency</h4>
+<h4 class='subheading'>&rsaquo; Example 1: Format all element values as currency</h4>
 
 <p class='explain'>
 If you need to convert all elements that contain numerical values into well formatted currencies, you can do this easily using 
@@ -287,7 +287,7 @@ OSREC.CurrencyFormatter.formatAll(
 
 <h4 class='subheading'>&rsaquo; Example 2: Format each element with a specific currency</h4>
 
-<p class='explain'>The <span class='code'>OSREC.CurrencyFormatter.formatEach(selector)</span> method can be used to update a range of different currency values on a page.</p>
+<p class='explain'>The <span class='code'>OSREC.CurrencyFormatter.formatEach(selector)</span> method can be used to update a range of different currency values on a page by specifying the currency in the <span class='code'>data-ccy</span> attribute.</p>
 
 <div style='padding: 5px;'>
 	
@@ -349,7 +349,8 @@ OSREC.CurrencyFormatter.formatEach('.money');
 <div class='codeHeader'>JavaScript</div>
 <div class='clear'></div>
 <pre><code class="javascript">
-// Once generated, the formatter below can used over and over again to format any number of currencies
+// Once generated, the formatter below can used over 
+// and over again to format any number of currencies
 	
 var frenchEuroFormatter = OSREC.CurrencyFormatter.getFormatter
 ({
@@ -405,15 +406,15 @@ document.getElementById('frenchEuroInput').value = formattedVal;
 
 <h4 class='subheading'>&rsaquo; Example 4: Negative and Zero Formats</h4>
 
-<p class='explain'>If you want to specify a separate format for negative and positive numbers, you may do so by splitting them with a semi-colon like so: <span class='code'>positivePattern;negativePattern</span>. 
-The example below defines a bespoke patterns for the Swiss Franc, where the negative numbers are formatted with enclosing brackets.</p>
+<p class='explain'>If you need to specify separate formats for negative numbers, positive numbers and zeros, you may do so by splitting them with a semi-colon like so: <span class='code'>positivePattern;negativePattern;zeroPattern</span>. 
+The example below defines a bespoke pattern for the Swiss Franc (CHF), where the negative numbers are formatted with enclosing brackets and zeros are formatted to 2 decimal places.</p>
 
 <div style='padding: 5px;'>
 	
 <div class='codeHeader'>HTML</div>
 <div class='clear'></div>
 <pre><code class="html">
-&lt;div class='money'&gt; -7564.58 &lt;/div&gt;
+&lt;div class='money'&gt; 7564.58 &lt;/div&gt;
 &lt;div class='money'&gt; -4583.85 &lt;/div&gt;
 &lt;div class='money'&gt; 0 &lt;/div&gt;
 
@@ -430,7 +431,7 @@ OSREC.CurrencyFormatter.formatAll
 ({
 	selector: '.money',
 	currency: 'CHF',
-	pattern: '#,##0.00 !;(#,##0.00 !);0'
+	pattern: '#,##0.00 !;(#,##0.00 !);0.00 !'
 });
 
 </code></pre>
@@ -441,7 +442,7 @@ OSREC.CurrencyFormatter.formatAll
 	<div class='codeHeader'>Result</div>
 	<div class='clear'></div>
 	<div class='result'>
-		<div class='money box'> -7564.58 </div>
+		<div class='money box'> 7564.58 </div>
 		<div class='money box'> -4583.85 </div>
 		<div class='money box'> 0 </div>
 	</div>
@@ -462,10 +463,11 @@ OSREC.CurrencyFormatter.formatAll
 			<h2 class='subheading'>Supported Locales</h2>
 
 			<p class='explain' style='margin-bottom: 30px'>
-			We use the standard ISO 2 digit language and country codes to define locales (as done in the <a href='http://cldr.unicode.org/'>Unicode Common Locale Data Repository</a>). The library currently supports the following locales - yes, all 715 of them!.
-			 In case you're not sure what a locale is, it is simply a set of parameters that define a user's 
-			 language, region and (in some cases) special preferences that the user wants to see in their user interface. 
-			 Usually a locale consists of at least a language identifier and a region identifier. 
+			We use the standard ISO 2 digit language and country codes to define locales (as per the <a href='http://cldr.unicode.org/'>Unicode Common Locale Data Repository</a>). The library supports the below locales (yes, all 715 of them!).
+			 <br/>
+			 <br/>
+			 In case you're not sure what a locale is, it is simply a set of parameters that define the standard language and regional preferences for someone using a 
+			 particular language, in a particular region. 
 			</p>
 			
 			<div id='supportedLocales'></div>	

@@ -1097,7 +1097,7 @@ OSREC.CurrencyFormatter =
 			
 			
 			var currentGroupLength = 0;
-			var currentZeroLength = 0;
+			var zeroLength = 0;
 			
 			for(var i = 0; i < pattern.length; ++i )
 			{
@@ -1118,17 +1118,16 @@ OSREC.CurrencyFormatter =
 						
 					case '0':
 						if(decimalsStarted) {  ++decimalPlaces; }
-						else { ++currentGroupLength; ++currentZeroLength; }
+						else { ++currentGroupLength; ++zeroLength; }
 						break;
 					
 					case ',':
-						groupLengths.push({ l: currentGroupLength, z: currentZeroLength });
+						groupLengths.push(currentGroupLength);
 						currentGroupLength = 0;
-						currentZeroLength = 0;
 						break;
 										
 					case '.':
-						groupLengths.push({ l: currentGroupLength, z: currentZeroLength });
+						groupLengths.push(currentGroupLength);
 						decimalsStarted = true;
 						break;
 				}
@@ -1136,6 +1135,12 @@ OSREC.CurrencyFormatter =
 				if(patternStarted && !(['#','0',',','.'].indexOf(c) > -1))
 				{ 
 					patternEnded = true;
+					
+					if(!decimalsStarted)
+					{
+						groupLengths.push(currentGroupLength);
+					}
+					
 				}
 				
 				if(patternEnded) { backPadding += c; }
@@ -1146,7 +1151,8 @@ OSREC.CurrencyFormatter =
 				decimalPlaces: decimalPlaces,
 				frontPadding: frontPadding,
 				backPadding: backPadding,
-				groupLengths: groupLengths
+				groupLengths: groupLengths,
+				zeroLength: zeroLength
 			};
 			
 			return encodedPattern;
@@ -1170,6 +1176,14 @@ OSREC.CurrencyFormatter =
 		negativeFormat.symbol = symbol;
 		negativeFormat.decimal = decimal;
 		negativeFormat.group = group;
+
+		// Zero Padding helper function
+		
+		var pad = function(n, width) 
+		{
+			n = n + '';
+			return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+		}		
 				
 		// Format function
 		
@@ -1191,13 +1205,13 @@ OSREC.CurrencyFormatter =
 				{
 					if(groupIndex <= 0) { groupIndex = 1; } // Always reset to the first group length if the number is big
 					
-					var currentGroup = f.groupLengths[groupIndex];
+					var currentGroupLength = f.groupLengths[groupIndex];
 					
-					var start = cursor-currentGroup.l;
+					var start = cursor-currentGroupLength;
 					
 					segment = splitNumber[0].substring(start, cursor) + f.group + segment;
 					
-					cursor -= currentGroup.l;
+					cursor -= currentGroupLength;
 					
 					--groupIndex;
 				}
@@ -1206,7 +1220,9 @@ OSREC.CurrencyFormatter =
 				//console.log(segment);
 			}
 			
-			var formattedNumber = f.frontPadding + segment + f.decimal + splitNumber[1] + f.backPadding; 
+			if(segment.length < f.zeroLength) { segment = pad(segment, f.zeroLength); }
+			
+			var formattedNumber = f.frontPadding + segment + ( isUndefined(splitNumber[1]) ? '' : (f.decimal + splitNumber[1]) ) + f.backPadding; 
 			
 			return formattedNumber.replace('!', symbol);
 			
