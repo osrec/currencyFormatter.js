@@ -1078,7 +1078,7 @@ OSREC.CurrencyFormatter =
 		decimal		= isUndefined(p.decimal) ? locale.d : p.decimal;
 		group 		= isUndefined(p.group) ? locale.g : p.group;
 		
-		console.log(pattern);
+		//console.log(locale);
 		
 		// encodePattern Function - returns a few simple characteristics of the pattern provided
 		
@@ -1161,7 +1161,7 @@ OSREC.CurrencyFormatter =
 		var zeroFormat = positiveFormat;
 		
 		if(!isUndefined(patternArray[1])) { negativeFormat = encodePattern(patternArray[1]); }
-		if(!isUndefined(patternArray[2])) { zeroFormat = encodePattern(patternArray[2]); }
+		if(!isUndefined(patternArray[2])) { zeroFormat = patternArray[2]; }
 		
 		positiveFormat.symbol = symbol;
 		positiveFormat.decimal = decimal;
@@ -1170,11 +1170,7 @@ OSREC.CurrencyFormatter =
 		negativeFormat.symbol = symbol;
 		negativeFormat.decimal = decimal;
 		negativeFormat.group = group;
-		
-		zeroFormat.symbol = symbol;
-		zeroFormat.decimal = decimal;
-		zeroFormat.group = group;
-		
+				
 		// Format function
 		
 		var format = function(n, f)
@@ -1220,7 +1216,8 @@ OSREC.CurrencyFormatter =
 		{
 			var formattedNumber;
 			n = Number(n);
-			if(n >= 0) { formattedNumber = format(n, positiveFormat); }
+			if(n > 0) { formattedNumber = format(n, positiveFormat); }
+			else if(n == 0) { formattedNumber = zeroFormat.replace('!', symbol); }
 			else { formattedNumber = format(n, negativeFormat);	}
 			return formattedNumber;
 		};
@@ -1232,9 +1229,7 @@ OSREC.CurrencyFormatter =
 		var formatter = OSREC.CurrencyFormatter.getFormatter(p);
 		
 		var matches = document.querySelectorAll(p.selector);
-		
-		console.log(matches);
-		
+				
 		for (i = 0; i < matches.length; ++i) 
 		{
 			matches[i].innerHTML = formatter(matches[i].innerHTML);
@@ -1268,8 +1263,13 @@ OSREC.CurrencyFormatter =
 				console.log(e);
 			}
 		}
-	}	
+	},	
 	
-	
+	format: function(n, p)
+	{
+		var formatterFunction = OSREC.CurrencyFormatter.getFormatter(p);
+		
+		return formatterFunction(n);
+	}
 };
 
