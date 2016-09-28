@@ -1232,7 +1232,7 @@ OSREC.CurrencyFormatter =
 				
 		for (i = 0; i < matches.length; ++i) 
 		{
-			matches[i].innerHTML = formatter(matches[i].innerHTML);
+			matches[i].innerHTML = formatter(matches[i].textContent);
 		}
 	},
 	
@@ -1256,7 +1256,7 @@ OSREC.CurrencyFormatter =
 				
 				var formatter = formatters[ccy];
 				
-				matches[i].innerHTML = formatter(matches[i].innerHTML);
+				matches[i].innerHTML = formatter(matches[i].textContent);
 			}
 			catch (e)
 			{
