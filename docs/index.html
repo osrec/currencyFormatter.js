@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />		
-		<script type='text/javascript' src='currencyFormatter.js'></script>	
+		<script type='text/javascript' src='currencyFormatter.min.js'></script>	
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atelier-forest-dark.min.css">
 		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
@@ -115,7 +115,7 @@
 		 
 		.result { padding: 30px 30px !important; border-radius: 5px ; font-size: 16px; color: #A8A19F; background: #1B1918; margin: 10px 0 !important; }
 		
-		p.explain { font-size: 16px; line-height: 2; font-weight: 300} 
+		.explain { font-size: 16px; line-height: 2; font-weight: 300} 
 		
 		@media only screen and (min-width : 0px) and (max-width : 1019.9999px) /* Mobile */
 		{
@@ -163,16 +163,22 @@
 			<h2 class='subheading'>About</h2>
 
 			<p class='explain'>
-			This library is lovingly maintained in London by OSREC Financial. 
+			This library is lovingly maintained in London by <a href='https://www.linkedin.com/company/osrec-financial'>OSREC Financial</a>. 
 			It is available for both commercial and non-commercial use under the MIT licence. Bugs and issues
 			should be reported via github. If you use the library, please do mention us :)
 			</p>
 				
 			<h2 class='subheading'>Setup</h2>
 
-			<p class='explain'>
-			Just grab the latest version from github and reference in your HTML. The library has no dependecies :)
-			</p>
+			<div class='explain'>
+			Just grab the latest version from github:
+			<br/>	
+			<br/>		
+			<li>Download ZIP: <a href="https://github.com/osrec/currencyFormatter.js/archive/master.zip">https://github.com/osrec/currencyFormatter.js/archive/master.zip</a></li>
+			<li>Clone from Github Repository: <span class='code'>git clone https://github.com/osrec/currencyFormatter.js.git</span></li>
+			<br/>	
+			Reference in your HTML as shown below - the library has no dependecies :)
+			</div>
 <pre><code class="html">
 &lt;script type='text/javascript' src='currencyFormatter.js'&gt;&lt;/script&gt;	
 &lt;!--OR--&gt;
