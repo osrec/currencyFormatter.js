@@ -1163,10 +1163,9 @@ OSREC.CurrencyFormatter =
 		var patternArray = pattern.split(";");
 				
 		var positiveFormat = encodePattern(patternArray[0]);
-		var negativeFormat = positiveFormat;
+		var negativeFormat = isUndefined(patternArray[1]) ? encodePattern("-" + patternArray[0]) : encodePattern(patternArray[1]);
 		var zeroFormat = positiveFormat;
 		
-		if(!isUndefined(patternArray[1])) { negativeFormat = encodePattern(patternArray[1]); }
 		if(!isUndefined(patternArray[2])) { zeroFormat = patternArray[2]; }
 		
 		positiveFormat.symbol = symbol;
