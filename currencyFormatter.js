@@ -1157,24 +1157,6 @@ OSREC.CurrencyFormatter =
 			
 			return encodedPattern;
 		};		
-		
-		// Use encode function to work out pattern
-		
-		var patternArray = pattern.split(";");
-				
-		var positiveFormat = encodePattern(patternArray[0]);
-		var negativeFormat = isUndefined(patternArray[1]) ? encodePattern("-" + patternArray[0]) : encodePattern(patternArray[1]);
-		var zeroFormat = positiveFormat;
-		
-		if(!isUndefined(patternArray[2])) { zeroFormat = patternArray[2]; }
-		
-		positiveFormat.symbol = symbol;
-		positiveFormat.decimal = decimal;
-		positiveFormat.group = group;
-
-		negativeFormat.symbol = symbol;
-		negativeFormat.decimal = decimal;
-		negativeFormat.group = group;
 
 		// Zero Padding helper function
 		
@@ -1225,14 +1207,36 @@ OSREC.CurrencyFormatter =
 			
 			return formattedNumber.replace('!', symbol);
 			
-		};		
+		};
+		
+		// Use encode function to work out pattern
+		
+		var patternArray = pattern.split(";");
+				
+		var positiveFormat = encodePattern(patternArray[0]);
+		
+		positiveFormat.symbol = symbol;
+		positiveFormat.decimal = decimal;
+		positiveFormat.group = group;		
+		
+		var negativeFormat = isUndefined(patternArray[1]) ? encodePattern("-" + patternArray[0]) : encodePattern(patternArray[1]);
+		
+		negativeFormat.symbol = symbol;
+		negativeFormat.decimal = decimal;
+		negativeFormat.group = group;			
+		
+		var zero = isUndefined(patternArray[2]) ? format(0, positiveFormat) : patternArray[2];
+		
+		if(!isUndefined(patternArray[2])) { zeroFormat = patternArray[2]; }
+
+	
 		
 		return function(n)
 		{
 			var formattedNumber;
 			n = Number(n);
 			if(n > 0) { formattedNumber = format(n, positiveFormat); }
-			else if(n == 0) { formattedNumber = zeroFormat.replace('!', symbol); }
+			else if(n == 0) { formattedNumber = zero.replace('!', symbol); }
 			else { formattedNumber = format(n, negativeFormat);	}
 			return formattedNumber;
 		};
