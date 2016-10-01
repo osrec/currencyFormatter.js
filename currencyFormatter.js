@@ -1293,7 +1293,7 @@ OSREC.CurrencyFormatter =
 };
 
 var hasDefine = typeof define === 'function';
-var hasExports = typeof module !== 'undefined' && module['exports'];
+var hasExports = typeof module !== 'undefined' && module.exports;
 var root = (typeof window === 'undefined') ? global : window;
 
 if (hasDefine) { // AMD Module
@@ -1301,7 +1301,8 @@ if (hasDefine) { // AMD Module
     return CurrencyFormatter;
   });
 } else if (hasExports) { // Node.js Module
-  module['exports'] = CurrencyFormatter;
+  module.exports = CurrencyFormatter;
 } else { // Assign to the global object
-  root['OSREC'] = OSREC;
+	// This makes sure that the object really is assigned tot he global scope
+  root.OSREC = OSREC;
 }
