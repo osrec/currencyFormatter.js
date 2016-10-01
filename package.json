@@ -1,0 +1,29 @@
+{
+  "name": "currencyformatter.js",
+  "version": "1.0.2",
+  "description": "A super simple currency formatting library",
+  "main": "currencyFormatter.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osrec/currencyFormatter.js.git"
+  },
+  "keywords": [
+    "currency",
+    "javascript",
+    "money",
+    "formatting",
+    "decimal"
+  ],
+  "author": "OSREC <info@osrec.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osrec/currencyFormatter.js/issues"
+  },
+  "homepage": "https://github.com/osrec/currencyFormatter.js#readme"
+}

@@ -4,10 +4,24 @@
 
 var OSREC = OSREC || {};
 
-OSREC.CurrencyFormatter = 
+var hasDefine = typeof define === 'function';
+var hasExports = typeof module !== 'undefined' && module['exports'];
+var root = (typeof window === 'undefined') ? global : window;
+
+if (hasDefine) { // AMD Module
+  define([], function() {
+    return CurrencyFormatter;
+  });
+} else if (hasExports) { // Node.js Module
+  module['exports'] = CurrencyFormatter;
+} else { // Assign to the global object
+  root['OSREC'] = OSREC;
+}
+
+OSREC.CurrencyFormatter =
 {
 	symbols:
-	{	
+	{
 		AED:'&#x62f;&#x2e;&#x625;&#x2e;&#x200f;',
 		AFN:'&#x60b;',
 		ALL:'&#x4c;&#x65;&#x6b;&#xeb;',
@@ -162,7 +176,7 @@ OSREC.CurrencyFormatter =
 		ZMW:'&#x4b;'
 	},
 
-	defaultLocales: 
+	defaultLocales:
 	{
 		AED: 'ar_AE',
 		AFN: 'fa_AF',
@@ -319,9 +333,9 @@ OSREC.CurrencyFormatter =
 		ZAR: 'zu',
 		ZMW: 'en_ZM',
 		ZWL: 'en_ZW',
-		
+
 	},
-	
+
 	locales:
 	{
 		af: { p: '!#,##0.00', g: ' ', d: ',' },
@@ -1040,197 +1054,197 @@ OSREC.CurrencyFormatter =
 		zu: { p: '!#,##0.00', g: ',', d: '.' },
 		zu_ZA: { h: 'zu' },
 	},
-	
+
 	getFormatter: function(p)
 	{
 		var locales 		= OSREC.CurrencyFormatter.locales;
 		var defaultLocales 	= OSREC.CurrencyFormatter.defaultLocales;
 		var symbols 		= OSREC.CurrencyFormatter.symbols;
-		
+
 		var locale, currency, symbol, pattern, decimal, group;
-		
+
 		// Helper Functions
-		
+
 		var isUndefined = function(o)
 		{
 			return (typeof o === 'undefined');
 		};
-		
-		var toFixed = function( n, precision ) 
+
+		var toFixed = function( n, precision )
 		{
 			return (+(Math.round(+(n + 'e' + precision)) + 'e' + -precision)).toFixed(precision);
 		};
-		
+
 		// Perform checks on inputs and set up defaults as needed (defaults to en, USD)
-		
+
 		if(isUndefined(p)) { p = {}; }
-		
+
 		currency 	= isUndefined(p.currency)? 'USD' : p.currency.toUpperCase();
 		locale 		= isUndefined(p.locale) ? locales[defaultLocales[currency]] : locales[p.locale];
-		
+
 		if(!isUndefined(locale.h)) locale = locales[locale.h]; // Locale inheritance
-		
+
 		symbol 		= isUndefined(p.symbol) ? symbols[currency] : p.symbol;
-		
+
 		if(isUndefined(symbol)) symbol = currency; // In case we don't have the symbol, just use the ccy code
 
 		pattern 	= isUndefined(p.pattern) ? locale.p : p.pattern;
 		decimal		= isUndefined(p.decimal) ? locale.d : p.decimal;
 		group 		= isUndefined(p.group) ? locale.g : p.group;
-		
+
 		//console.log(locale);
-		
+
 		// encodePattern Function - returns a few simple characteristics of the pattern provided
-		
+
 		var encodePattern = function(pattern)
 		{
 			var decimalPlaces = 0;
 			var frontPadding = '';
 			var backPadding = '';
 			var groupLengths = [];
-			
+
 			//console.log(pattern);
-				
+
 			var patternStarted = false;
 			var decimalsStarted = false;
 			var patternEnded = false;
-			
-			
+
+
 			var currentGroupLength = 0;
 			var zeroLength = 0;
-			
+
 			for(var i = 0; i < pattern.length; ++i )
 			{
 				var c = pattern[i];
-				
-				if(!patternStarted && ['#','0',',','.'].indexOf(c) > -1) 
-				{ 
-					patternStarted = true; 
+
+				if(!patternStarted && ['#','0',',','.'].indexOf(c) > -1)
+				{
+					patternStarted = true;
 				}
 
 				if(!patternStarted) { frontPadding += c; }
 
 				switch (c)
-				{							
+				{
 					case '#':
 						++currentGroupLength;
 						break;
-						
+
 					case '0':
 						if(decimalsStarted) {  ++decimalPlaces; }
 						else { ++currentGroupLength; ++zeroLength; }
 						break;
-					
+
 					case ',':
 						groupLengths.push(currentGroupLength);
 						currentGroupLength = 0;
 						break;
-										
+
 					case '.':
 						groupLengths.push(currentGroupLength);
 						decimalsStarted = true;
 						break;
 				}
-				
+
 				if(patternStarted && !(['#','0',',','.'].indexOf(c) > -1))
-				{ 
+				{
 					patternEnded = true;
-					
+
 					if(!decimalsStarted)
 					{
 						groupLengths.push(currentGroupLength);
 					}
-					
+
 				}
-				
+
 				if(patternEnded) { backPadding += c; }
 			}
-			
-			var encodedPattern = 
-			{ 
+
+			var encodedPattern =
+			{
 				decimalPlaces: decimalPlaces,
 				frontPadding: frontPadding,
 				backPadding: backPadding,
 				groupLengths: groupLengths,
 				zeroLength: zeroLength
 			};
-			
+
 			return encodedPattern;
-		};		
+		};
 
 		// Zero Padding helper function
-		
-		var pad = function(n, width) 
+
+		var pad = function(n, width)
 		{
 			n = n + '';
 			return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-		}		
-				
+		}
+
 		// Format function
-		
+
 		var format = function(n, f)
 		{
 			var formattedNumber = toFixed(Math.abs(n), f.decimalPlaces);
-			
+
 			var splitNumber = formattedNumber.split(".");
-			
+
 			if(f.groupLengths.length > 1)	// i.e. we actually have some sort of grouping in the values
 			{
 				var segment = "";
-				
+
 				var cursor = splitNumber[0].length;
-				
+
 				var groupIndex = f.groupLengths.length - 1;
-				
-				while(cursor > 0) 
+
+				while(cursor > 0)
 				{
 					if(groupIndex <= 0) { groupIndex = 1; } // Always reset to the first group length if the number is big
-					
+
 					var currentGroupLength = f.groupLengths[groupIndex];
-					
+
 					var start = cursor-currentGroupLength;
-					
+
 					segment = splitNumber[0].substring(start, cursor) + f.group + segment;
-					
+
 					cursor -= currentGroupLength;
-					
+
 					--groupIndex;
 				}
-				
+
 				segment = segment.substring(0, segment.length-1);
 				//console.log(segment);
 			}
-			
+
 			if(segment.length < f.zeroLength) { segment = pad(segment, f.zeroLength); }
-			
-			var formattedNumber = f.frontPadding + segment + ( isUndefined(splitNumber[1]) ? '' : (f.decimal + splitNumber[1]) ) + f.backPadding; 
-			
+
+			var formattedNumber = f.frontPadding + segment + ( isUndefined(splitNumber[1]) ? '' : (f.decimal + splitNumber[1]) ) + f.backPadding;
+
 			return formattedNumber.replace('!', symbol);
-			
+
 		};
-		
+
 		// Use encode function to work out pattern
-		
+
 		var patternArray = pattern.split(";");
-				
+
 		var positiveFormat = encodePattern(patternArray[0]);
-		
+
 		positiveFormat.symbol = symbol;
 		positiveFormat.decimal = decimal;
-		positiveFormat.group = group;		
-		
+		positiveFormat.group = group;
+
 		var negativeFormat = isUndefined(patternArray[1]) ? encodePattern("-" + patternArray[0]) : encodePattern(patternArray[1]);
-		
+
 		negativeFormat.symbol = symbol;
 		negativeFormat.decimal = decimal;
-		negativeFormat.group = group;			
-		
+		negativeFormat.group = group;
+
 		var zero = isUndefined(patternArray[2]) ? format(0, positiveFormat) : patternArray[2];
-		
+
 		if(!isUndefined(patternArray[2])) { zeroFormat = patternArray[2]; }
 
-	
-		
+
+
 		return function(n)
 		{
 			var formattedNumber;
@@ -1240,41 +1254,41 @@ OSREC.CurrencyFormatter =
 			else { formattedNumber = format(n, negativeFormat);	}
 			return formattedNumber;
 		};
-		
+
 	},
-	
+
 	formatAll: function(p)
 	{
 		var formatter = OSREC.CurrencyFormatter.getFormatter(p);
-		
+
 		var matches = document.querySelectorAll(p.selector);
-				
-		for (i = 0; i < matches.length; ++i) 
+
+		for (i = 0; i < matches.length; ++i)
 		{
 			matches[i].innerHTML = formatter(matches[i].textContent);
 		}
 	},
-	
+
 	formatEach: function(selector)
 	{
 		var formatters = {}
-		
+
 		var matches = document.querySelectorAll(selector);
-		
-		for (i = 0; i < matches.length; ++i) 
+
+		for (i = 0; i < matches.length; ++i)
 		{
 			try
 			{
-				
+
 				var ccy = matches[i].getAttribute("data-ccy");
-				
+
 				if (typeof formatters[ccy] === 'undefined')
 				{
 					formatters[ccy] = OSREC.CurrencyFormatter.getFormatter({currency: ccy});
 				}
-				
+
 				var formatter = formatters[ccy];
-				
+
 				matches[i].innerHTML = formatter(matches[i].textContent);
 			}
 			catch (e)
@@ -1282,13 +1296,12 @@ OSREC.CurrencyFormatter =
 				console.log(e);
 			}
 		}
-	},	
-	
+	},
+
 	format: function(n, p)
 	{
 		var formatterFunction = OSREC.CurrencyFormatter.getFormatter(p);
-		
+
 		return formatterFunction(n);
 	}
 };
-
