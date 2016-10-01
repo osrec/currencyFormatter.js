@@ -4,20 +4,6 @@
 
 var OSREC = OSREC || {};
 
-var hasDefine = typeof define === 'function';
-var hasExports = typeof module !== 'undefined' && module['exports'];
-var root = (typeof window === 'undefined') ? global : window;
-
-if (hasDefine) { // AMD Module
-  define([], function() {
-    return CurrencyFormatter;
-  });
-} else if (hasExports) { // Node.js Module
-  module['exports'] = CurrencyFormatter;
-} else { // Assign to the global object
-  root['OSREC'] = OSREC;
-}
-
 OSREC.CurrencyFormatter =
 {
 	symbols:
@@ -1305,3 +1291,17 @@ OSREC.CurrencyFormatter =
 		return formatterFunction(n);
 	}
 };
+
+var hasDefine = typeof define === 'function';
+var hasExports = typeof module !== 'undefined' && module['exports'];
+var root = (typeof window === 'undefined') ? global : window;
+
+if (hasDefine) { // AMD Module
+  define([], function() {
+    return CurrencyFormatter;
+  });
+} else if (hasExports) { // Node.js Module
+  module['exports'] = CurrencyFormatter;
+} else { // Assign to the global object
+  root['OSREC'] = OSREC;
+}
