@@ -10,7 +10,7 @@ npm install currencyformatter.js
 
 ### bower
 ```Bash
-bower install currencyformatter.js
+bower install currencyFormatter.js
 ```
 
 ## Docs
