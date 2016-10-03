@@ -1292,3 +1292,25 @@ OSREC.CurrencyFormatter =
 	}
 };
 
+
+
+var hasDefine = typeof define === 'function';
+var hasExports = typeof module !== 'undefined' && module.exports;
+var root = (typeof window === 'undefined') ? global : window;
+
+if (hasDefine) 
+{
+	// AMD Module
+	define([], function() { return OSREC.CurrencyFormatter; });
+} 
+else if (hasExports) 
+{
+	// Node.js Module
+  	module.exports = OSREC.CurrencyFormatter;
+}
+else 
+{ 
+	// Assign to the global object
+	// This makes sure that the object really is assigned to the global scope
+  	root.OSREC = OSREC;
+}
