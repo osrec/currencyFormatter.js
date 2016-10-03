@@ -1298,10 +1298,10 @@ var root = (typeof window === 'undefined') ? global : window;
 
 if (hasDefine) { // AMD Module
   define([], function() {
-    return CurrencyFormatter;
+    return OSREC.CurrencyFormatter;
   });
 } else if (hasExports) { // Node.js Module
-  module.exports = CurrencyFormatter;
+  module.exports = OSREC.CurrencyFormatter;
 } else { // Assign to the global object
 	// This makes sure that the object really is assigned tot he global scope
   root.OSREC = OSREC;
