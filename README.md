@@ -5,12 +5,12 @@ A super simple currency formatting library
 
 ### npm
 ```Bash
-npm install currencyformater.js
+npm install currencyformatter.js
 ```
 
 ### bower
 ```Bash
-bower install currencyformater.js
+bower install currencyformatter.js
 ```
 
 ## Docs
