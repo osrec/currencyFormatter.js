@@ -1,7 +1,7 @@
 # currencyFormatter.js
 A super simple currency formatting library
 
-## Instalation
+## Installation
 
 ### npm
 ```Bash
