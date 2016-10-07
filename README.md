@@ -1,6 +1,9 @@
 # currencyFormatter.js
 A super simple currency formatting library
 
+## Docs
+[Full docs available here ](https://osrec.github.io/currencyFormatter.js/)
+
 ## Installation
 
 ### npm
@@ -13,5 +16,3 @@ npm install currencyformatter.js
 bower install currencyFormatter.js
 ```
 
-## Docs
-[Full docs available here ](https://osrec.github.io/currencyFormatter.js/)
