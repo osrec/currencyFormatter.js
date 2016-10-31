@@ -1,6 +1,6 @@
 {
   "name": "currencyformatter.js",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A super simple currency formatting library",
   "main": "currencyFormatter.js",
   "directories": {
