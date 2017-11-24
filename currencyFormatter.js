@@ -1006,7 +1006,7 @@ OSREC.CurrencyFormatter =
 		vai_Latn_LR: { h: 'vai' },
 		vai_Vaii: { h: 'vai' },
 		vai_Vaii_LR: { h: 'vai' },
-		vi: { p: '! #,##0.00', g: '.', d: ',' },
+		vi: { p: '#,##0.00 !', g: '.', d: ',' },
 		vi_VN: { h: 'vi' },
 		vo: { p: '!#,##0.00', g: ',', d: '.' },
 		vo_001: { h: 'vo' },
