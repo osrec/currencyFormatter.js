@@ -1066,31 +1066,32 @@ OSREC.CurrencyFormatter =
 
 		if(isUndefined(p)) { p = {}; }
 
+
 		if(isUndefined(p.currency) && isUndefined(p.locale))
 		{
-			currency = 'USD';
+			// use browser's default language when currency and locale both unset
+			p.locale = (navigator.languages && navigator.languages.length > 0) 
+						? navigator.languages[0]
+						: (navigator.language || navigator.userLanguage || 'en');
+		}
+		if(isUndefined(p.locale)) // p.currency must be set
+		{
+			currency = p.currency.toUpperCase();
 			locale = locales[defaultLocales[currency]];
+			if(!isUndefined(locale.h))
+			{
+				locale = locales[locale.h]; // Locale inheritance
+			}
 		}
 		else
 		{
-			if(isUndefined(p.currency))
+			p.locale = p.locale.replace('-', '_');
+			locale = locales[p.locale];
+			if(!isUndefined(locale.h))
 			{
-				locale = locales[p.locale.replace('-', '_')];
-				if(!isUndefined(locale.h)) 
-				{
-					locale = locales[locale.h]; // Locale inheritance
-				}
-				currency = locale.c;
+				locale = locales[locale.h]; // Locale inheritance
 			}
-			else
-			{
-				currency = p.currency.toUpperCase();
-				locale = locales[defaultLocales[currency]];
-				if(!isUndefined(locale.h))
-				{
-					locale = locales[locale.h]; // Locale inheritance
-				}
-			}
+			currency = isUndefined(p.currency) ? currency = locale.c : p.currency.toUpperCase();
 		}
 
 		symbol 		= isUndefined(p.symbol) ? symbols[currency] : p.symbol;
@@ -1101,8 +1102,6 @@ OSREC.CurrencyFormatter =
 		decimal		= isUndefined(p.decimal) ? locale.d : p.decimal;
 		group 		= isUndefined(p.group) ? locale.g : p.group;
 
-		//console.log(locale);
-
 		// encodePattern Function - returns a few simple characteristics of the pattern provided
 
 		var encodePattern = function(pattern)
@@ -1112,12 +1111,9 @@ OSREC.CurrencyFormatter =
 			var backPadding = '';
 			var groupLengths = [];
 
-			//console.log(pattern);
-
 			var patternStarted = false;
 			var decimalsStarted = false;
 			var patternEnded = false;
-
 
 			var currentGroupLength = 0;
 			var zeroLength = 0;
@@ -1221,7 +1217,6 @@ OSREC.CurrencyFormatter =
 				}
 
 				segment = segment.substring(0, segment.length-1);
-				//console.log(segment);
 			}
 
 			if(segment.length < f.zeroLength) { segment = pad(segment, f.zeroLength); }
@@ -1310,7 +1305,6 @@ OSREC.CurrencyFormatter =
 		return formatterFunction(n);
 	}
 };
-
 
 
 var hasDefine = typeof define === 'function';
