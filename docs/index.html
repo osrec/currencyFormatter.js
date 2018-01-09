@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />		
-		<script type='text/javascript' src='currencyFormatter.min.js'></script>	
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atelier-forest-dark.min.css">
-		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+		<script type='text/javascript' src='../currencyFormatter.min.js'></script>	
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atelier-forest-dark.min.css">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	</head>
 	<title>CurrencyFormatter.js by OSREC Financial</title>
@@ -66,7 +66,6 @@
 				currency: 'CHF',
 				pattern: '#,##0.00 !;(#,##0.00 !);0.00 !'
 			});
-			
 			// Populate supported CCYs
 			
 			var supportedCcys = '';
@@ -167,7 +166,7 @@
 				<h4 style='padding-bottom: 20px;'>Works well with unusual formats, including the Indian Rupee</h4>
 				
 				
-				<div class='' style='padding-top: 10px;'>Made with love by</div>
+				<div class='' style='padding-top: 10px;'>Made with &#9825; by</div>
 				<div class='' style='padding-top: 10px;'>
                                 	<a href='https://usebx.com'><img src='https://usebx.com/web/img/Bx.svg' style='height: 64px; margin-right: 10px;'></a>
                                 	<a href='https://osrec.co.uk'><img src='https://usebx.com/web/img/osrecIcon.png' style='height: 64px;'></a>
@@ -182,23 +181,25 @@
 			<h2 class='subheading'>About</h2>
 
 			<p class='explain'>
-			CurrencyFormatter.js allows users to format numbers in a variety of currency formats. It contains 155 currency definitions, and 715 locale
-			definitions right out of the box, and can handle unusually formatted currencies, such as the INR and is completely configurable.
+			CurrencyFormatter.js allows you to format numbers as currencies. It contains 155 currency definitions and 715 locale
+			definitions out of the box. It handles unusually formatted currencies, such as the INR. This library is now used 
+			by hedge funds, banks and a variety of other organisations across the world for the efficient formatting 
+			of currencies in a wide range of applications.
 			</p>
 			<br/>
 
-			<p class='explain'>
-			This library was originally created by the Bx team while developing the Bx platform (check it out 
-			at <a style='font-weight: bold' href='https://usebx.com'>https://usebx.com</a>). Having found no library capable of formatting the more unusual currencies
-			they decided to create their own and release it for free.
+			<p class='explain' style='padding: 15px; box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.3); background: #FFFDB9'>
+			This library was originally created by the Bx team while developing Bx @ <a style='font-weight: bold' href='https://usebx.com'>https://usebx.com</a>. Having found no library capable of formatting the more unusual currencies
+			they decided to create their own and release it under an MIT Licence. 
+			<br/>
+			&rarrhk; <a style='font-weight: bold' href='https://usebx.com'>Give Bx a try</a> if you ever need a tool for invoicing, expenses or project management :)
 			</p>
 
 			<br/>
 
 			<p class='explain'>
-			This library is lovingly maintained in London by <a style='font-weight: bold' href='https://usebx.com'>Bx</a> and <a style='font-weight: bold' href='https://www.linkedin.com/company/osrec-financial'>OSREC Financial</a>. 
-			It is available for both commercial and non-commercial use under the MIT licence. Bugs and issues
-			should be reported via github. If you use the library, please do mention us :)
+			This library is maintained by <a style='font-weight: bold' href='https://osrec.co.uk'>OSREC Technologies</a> in London. Bugs and issues
+			should be reported via github. If you use the library, we appreciate a mention or a link back to https://osrec.co.uk :)
 			</p>
 			
 			<div class='' style='padding-top: 10px;'>
@@ -224,10 +225,9 @@
 			<span class='code'>git clone https://github.com/osrec/currencyFormatter.js.git</span>
 			<br/>	
 			<br/>
-			Install from bower or npm:
+			Install via npm:
 			<br/>
 			<div class='code'>npm install currencyformatter.js</div>
-			<div class='code'>bower install currencyFormatter.js</div>
 			<br/>	
 			Reference in your HTML as shown below - the library has no dependecies :)
 			</div>
@@ -237,6 +237,10 @@
 &lt;script type='text/javascript' src='currencyFormatter.min.js'&gt;&lt;/script&gt;	
 
 </code></pre>	
+
+<p class='explain' style='font-weight: bold;'>
+Also available via cdnjs.com (<a href='https://cdnjs.com/libraries/currencyformatter.js'>https://cdnjs.com/libraries/currencyformatter.js</a>)
+</p>
 
 			<h2 class='subheading'>Usage</h2>
 		
@@ -490,6 +494,25 @@ OSREC.CurrencyFormatter.formatAll
 	</div>
 </div>
 
+
+
+<!------------------------------------->
+
+<h4 class='subheading'>&rsaquo; Example 5: Parsing</h4>
+
+<p class='explain'>If you have currency values formatted as text in a particular locale, use the <span class='code'>OSREC.CurrencyFormatter.parse()</span> function to convert to a <span class='code'>Number</span>.</p>
+
+<div style='padding: 5px;'>
+
+<div class='codeHeader'>JavaScript</div>
+<div class='clear'></div>
+<pre><code class="javascript">
+OSREC.CurrencyFormatter.parse('€ 100,99', { locale: 'it' }); // Returns 100.99
+OSREC.CurrencyFormatter.parse('€ -99,50', { locale: 'it' }); // Returns -99.5
+OSREC.CurrencyFormatter.parse('$ 11/25', { decimal: '/' }); // Returns 11.25
+
+</code></pre>
+</div>
 
 
 
