@@ -1259,7 +1259,7 @@ OSREC.CurrencyFormatter =
 	{
 		var decimal = OSREC.CurrencyFormatter.getFormatDetails(p).decimal;
 		var mult = str.indexOf('-') >= 0 ? -1 : 1;
-		return Math.abs(Number(str.replace(new RegExp(`[^0-9${decimal}]`, 'g'), '').replace(decimal, '.'))) * mult;
+		return Math.abs(Number(str.replace(new RegExp('[^0-9' + decimal + ']', 'g'), '').replace(decimal, '.'))) * mult;
 	}
 };
 
