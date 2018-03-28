@@ -170,6 +170,30 @@ OSREC.CurrencyFormatter =
 		ZMW: 'K'
 	},
 
+	// all others have 2 decimal places
+  decimalPlaces: {
+    BIF: 0,
+    CLP: 0,
+    DJF: 0,
+    GNF: 0,
+    ISK: 0,
+    JPY: 0,
+    KRW: 0,
+    PYG: 0,
+    RWF: 0,
+    UGX: 0,
+    VND: 0,
+    VUV: 0,
+    XPF: 0,
+    BHD: 3,
+    IQD: 3,
+    JOD: 3,
+    KWD: 3,
+    LYD: 3,
+    OMR: 3,
+    TND: 3,
+  },
+
 	defaultLocales:
 	{
 		AED: 'ar_AE',
@@ -1051,12 +1075,13 @@ OSREC.CurrencyFormatter =
 		zu: { p: '!#,##0.00', g: ',', d: '.' },
 		zu_ZA: { h: 'zu' },
 	},
-
-	getFormatDetails: function(p)
+	
+	getFormatDetails: function(p) 
 	{
-		var locales 		= OSREC.CurrencyFormatter.locales;
-		var defaultLocales 	= OSREC.CurrencyFormatter.defaultLocales;
-		var symbols 		= OSREC.CurrencyFormatter.symbols;
+    		var locales = OSREC.CurrencyFormatter.locales;
+    		var defaultLocales = OSREC.CurrencyFormatter.defaultLocales;
+    		var symbols = OSREC.CurrencyFormatter.symbols;
+    		var decimalPlaces = OSREC.CurrencyFormatter.decimalPlaces;
 
 		var locale, currency, symbol, pattern, decimal, group;
 
@@ -1066,6 +1091,7 @@ OSREC.CurrencyFormatter =
 
 		currency 	= (p.currency || 'USD').toUpperCase();
 		locale 		= locales[p.locale || defaultLocales[currency]];
+		mantissaLength = typeof decimalPlaces[currency] !== 'undefined' ? decimalPlaces[currency] : 2;
 
 		if(typeof locale.h !== 'undefined') { locale = locales[locale.h]; } // Locale inheritance
 
@@ -1074,8 +1100,13 @@ OSREC.CurrencyFormatter =
 		decimal		= p.decimal || locale.d;
 		group 		= p.group || locale.g;
 		
-		return { pattern: pattern, decimal: decimal, group: group, symbol: symbol };
-
+    return {
+      pattern: pattern,
+      decimal: decimal,
+      group: group,
+      symbol: symbol,
+      mantissaLength: mantissaLength,
+    };
 	},
 
 	toFixed: function( n, precision ) 
@@ -1088,9 +1119,10 @@ OSREC.CurrencyFormatter =
 		var formatDetails = OSREC.CurrencyFormatter.getFormatDetails(p);
 		
 		var pattern 	= formatDetails.pattern;
-		var decimal		= formatDetails.decimal;
-		var group 		= formatDetails.group;
-		var symbol		= formatDetails.symbol;
+    		var decimal	= formatDetails.decimal;
+    		var group 	= formatDetails.group;
+		var symbol	= formatDetails.symbol;
+		var mantissaLength = formatDetails.mantissaLength;
 		
 		// encodePattern Function - returns a few simple characteristics of the pattern provided
 	
@@ -1100,14 +1132,15 @@ OSREC.CurrencyFormatter =
 			
 			var split = numberFormatPattern.split('.');
 			var c = split[0]; // Decimal chars
-			var m = split[1]; // Decimal mantissa
 			
-			var groups 			= c.split(',');
-			var groupLengths 	= groups.map(function(g) { return g.length; });
-			var zeroLength 		= (groups[groups.length - 1].match(/0/g) || []).length;
-			var decimalPlaces 	= typeof m === 'undefined' ? 0 : m.length;
-			var paddingSplit 	= pattern.split(numberFormatPattern);
+			// mantissa/decimalPlaces should be a function of currency code alone
+			var decimalPlaces = mantissaLength;
 			
+			var groups 		= c.split(',');
+      			var groupLengths 	= groups.map(function(g) { return g.length; });
+      			var zeroLength 		= (groups[groups.length - 1].match(/0/g) || []).length;
+      			var paddingSplit 	= pattern.split(numberFormatPattern);
+
 			var encodedPattern =
 			{
 				pattern: pattern,
