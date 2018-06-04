@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/osrec/currencyFormatter.js/issues"
   },
-  "homepage": "https://github.com/osrec/currencyFormatter.js#readme"
+  "homepage": "https://github.com/osrec/currencyFormatter.js#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.0"
+  }
 }
