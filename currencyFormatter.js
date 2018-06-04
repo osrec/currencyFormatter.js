@@ -1083,7 +1083,7 @@ OSREC.CurrencyFormatter =
     		var symbols = OSREC.CurrencyFormatter.symbols;
     		var decimalPlaces = OSREC.CurrencyFormatter.decimalPlaces;
 
-		var locale, currency, symbol, pattern, decimal, group;
+		var locale, currency, symbol, pattern, decimal, group, mantissaLength;
 
 		// Perform checks on inputs and set up defaults as needed (defaults to en, USD)
 
