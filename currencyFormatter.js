@@ -347,22 +347,22 @@ OSREC.CurrencyFormatter =
 		ar: { p: '! #,##0.00', g: ',', d: '.' },
 		ar_001: { h: 'ar' },
 		ar_AE: { h: 'ar' },
-		ar_BH: { h: 'ar' },
+		ar_BH: { p: '! #,##0.000', g: ',', d: '.' },
 		ar_DJ: { h: 'ar' },
 		ar_DZ: { p: '! #,##0.00', g: '.', d: ',' },
 		ar_EG: { h: 'ar' },
 		ar_EH: { h: 'ar' },
 		ar_ER: { h: 'ar' },
 		ar_IL: { h: 'ar' },
-		ar_IQ: { h: 'ar' },
-		ar_JO: { h: 'ar' },
+		ar_IQ: { p: '! #,##0.000', g: ',', d: '.' },
+		ar_JO: { p: '! #,##0.000', g: ',', d: '.' },
 		ar_KM: { h: 'ar' },
-		ar_KW: { h: 'ar' },
+		ar_KW: { p: '! #,##0.000', g: ',', d: '.' },
 		ar_LB: { p: '! #,##0.00', g: '.', d: ',' },
-		ar_LY: { p: '! #,##0.00', g: '.', d: ',' },
+		ar_LY: { p: '! #,##0.000', g: '.', d: ',' },
 		ar_MA: { p: '! #,##0.00', g: '.', d: ',' },
 		ar_MR: { p: '! #,##0.00', g: '.', d: ',' },
-		ar_OM: { h: 'ar' },
+		ar_OM: { p: '! #,##0.000', g: ',', d: '.' },
 		ar_PS: { h: 'ar' },
 		ar_QA: { h: 'ar' },
 		ar_SA: { h: 'ar' },
@@ -371,7 +371,7 @@ OSREC.CurrencyFormatter =
 		ar_SS: { h: 'ar' },
 		ar_SY: { h: 'ar' },
 		ar_TD: { h: 'ar' },
-		ar_TN: { p: '! #,##0.00', g: '.', d: ',' },
+		ar_TN: { p: '! #,##0.000', g: '.', d: ',' },
 		ar_YE: { h: 'ar' },
 		as: { p: '! #,##,##0.00', g: ',', d: '.' },
 		as_IN: { h: 'as' },
@@ -575,7 +575,7 @@ OSREC.CurrencyFormatter =
 		es_AR: { p: '! #,##0.00', g: '.', d: ',' },
 		es_BO: { h: 'es' },
 		es_BR: { h: 'es' },
-		es_CL: { p: '!#,##0.00;!-#,##0.00', g: '.', d: ',' },
+		es_CL: { p: '!#,##0;!-#,##0', g: '.', d: ',' },
 		es_CO: { p: '! #,##0.00', g: '.', d: ',' },
 		es_CR: { p: '#,##0.00 !', g: ' ', d: ',' },
 		es_CU: { h: 'es' },
@@ -593,7 +593,7 @@ OSREC.CurrencyFormatter =
 		es_PE: { h: 'es' },
 		es_PH: { h: 'es' },
 		es_PR: { h: 'es' },
-		es_PY: { p: '! #,##0.00;! -#,##0.00', g: '.', d: ',' },
+		es_PY: { p: '! #,##0;! -#,##0', g: '.', d: ',' },
 		es_SV: { h: 'es' },
 		es_US: { h: 'es' },
 		es_UY: { p: '! #,##0.00', g: '.', d: ',' },
@@ -637,7 +637,7 @@ OSREC.CurrencyFormatter =
 		fr_FR: { h: 'fr' },
 		fr_GA: { h: 'fr' },
 		fr_GF: { h: 'fr' },
-		fr_GN: { h: 'fr' },
+		fr_GN: { p: '#,##0 !', g: ' ', d: ',' },
 		fr_GP: { h: 'fr' },
 		fr_GQ: { h: 'fr' },
 		fr_HT: { h: 'fr' },
@@ -711,13 +711,13 @@ OSREC.CurrencyFormatter =
 		ig_NG: { h: 'ig' },
 		ii: { p: '!#,##0.00', g: ',', d: '.' },
 		ii_CN: { h: 'ii' },
-		is: { p: '#,##0.00 !', g: '.', d: ',' },
+		is: { p: '#,##0 !', g: '.', d: ',' },
 		is_IS: { h: 'is' },
 		it: { p: '#,##0.00 !', g: '.', d: ',' },
 		it_CH: { p: '! #,##0.00;!-#,##0.00', g: '\'', d: '.' },
 		it_IT: { h: 'it' },
 		it_SM: { h: 'it' },
-		ja: { p: '!#,##0.00', g: ',', d: '.' },
+		ja: { p: '!#,##0', g: ',', d: '.' },
 		ja_JP: { h: 'ja' },
 		jgo: { p: '! #,##0.00', g: '.', d: ',' },
 		jgo_CM: { h: 'jgo' },
@@ -749,7 +749,7 @@ OSREC.CurrencyFormatter =
 		km_KH: { h: 'km' },
 		kn: { p: '!#,##0.00', g: ',', d: '.' },
 		kn_IN: { h: 'kn' },
-		ko: { p: '!#,##0.00', g: ',', d: '.' },
+		ko: { p: '!#,##0', g: ',', d: '.' },
 		ko_KP: { h: 'ko' },
 		ko_KR: { h: 'ko' },
 		kok: { p: '! #,##,##0.00', g: ',', d: '.' },
@@ -1017,7 +1017,7 @@ OSREC.CurrencyFormatter =
 		vai_Latn_LR: { h: 'vai' },
 		vai_Vaii: { h: 'vai' },
 		vai_Vaii_LR: { h: 'vai' },
-		vi: { p: '! #,##0.00', g: '.', d: ',' },
+		vi: { p: '#,##0 !', g: '.', d: ',' },
 		vi_VN: { h: 'vi' },
 		vo: { p: '!#,##0.00', g: ',', d: '.' },
 		vo_001: { h: 'vo' },
@@ -1058,7 +1058,7 @@ OSREC.CurrencyFormatter =
 		var defaultLocales 	= OSREC.CurrencyFormatter.defaultLocales;
 		var symbols 		= OSREC.CurrencyFormatter.symbols;
 
-		var locale, currency, symbol, pattern, decimal, group;
+		var locale, currency, symbol, pattern, decimal, group, valueOnError;
 
 		// Perform checks on inputs and set up defaults as needed (defaults to en, USD)
 
@@ -1069,16 +1069,27 @@ OSREC.CurrencyFormatter =
 
 		if(typeof locale.h !== 'undefined') { locale = locales[locale.h]; } // Locale inheritance
 
-		symbol 		= (p.symbol || symbols[currency]) || currency;
-		pattern 	= p.pattern || locale.p;
-		decimal		= p.decimal || locale.d;
-		group 		= p.group || locale.g;
-		
-		return { pattern: pattern, decimal: decimal, group: group, symbol: symbol };
+		symbol = (p.symbol || symbols[currency]) || currency;
+		pattern = p.pattern || locale.p;
+		decimal = p.decimal || locale.d;
+		group = p.group || locale.g;
+		valueOnError = typeof p.valueOnError === 'undefined' ? 0 : p.valueOnError;
+
+		var formatDetails =
+		{
+			pattern: pattern,
+			decimal: decimal,
+			group: group,
+			symbol: symbol,
+			valueOnError: valueOnError,
+			postFormatFunction: p.postFormatFunction
+		};
+
+		return formatDetails;
 
 	},
 
-	toFixed: function( n, precision ) 
+	toFixed: function( n, precision )
 	{
 		return ( Math.round( Number(n) * Math.pow(10, precision) )/ Math.pow(10, precision) ).toFixed(precision);
 	},
@@ -1086,28 +1097,30 @@ OSREC.CurrencyFormatter =
 	getFormatter: function(p)
 	{
 		var formatDetails = OSREC.CurrencyFormatter.getFormatDetails(p);
-		
-		var pattern 	= formatDetails.pattern;
-		var decimal		= formatDetails.decimal;
-		var group 		= formatDetails.group;
-		var symbol		= formatDetails.symbol;
-		
+
+		var pattern = formatDetails.pattern;
+		var decimal = formatDetails.decimal;
+		var group = formatDetails.group;
+		var symbol = formatDetails.symbol;
+		var valueOnError = formatDetails.valueOnError;
+		var postFormatFunction = formatDetails.postFormatFunction;
+
 		// encodePattern Function - returns a few simple characteristics of the pattern provided
-	
+
 		var encodePattern = function(pattern)
 		{
 			var numberFormatPattern = pattern.trim().match(/[#0,\.]+/)[0];
-			
+
 			var split = numberFormatPattern.split('.');
 			var c = split[0]; // Decimal chars
 			var m = split[1]; // Decimal mantissa
-			
+
 			var groups 			= c.split(',');
 			var groupLengths 	= groups.map(function(g) { return g.length; });
 			var zeroLength 		= (groups[groups.length - 1].match(/0/g) || []).length;
 			var decimalPlaces 	= typeof m === 'undefined' ? 0 : m.length;
 			var paddingSplit 	= pattern.split(numberFormatPattern);
-			
+
 			var encodedPattern =
 			{
 				pattern: pattern,
@@ -1119,7 +1132,7 @@ OSREC.CurrencyFormatter =
 			};
 
 			return encodedPattern;
-		}
+		};
 
 		// Zero Padding helper function
 
@@ -1127,7 +1140,7 @@ OSREC.CurrencyFormatter =
 		{
 			n = n + '';
 			return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-		}
+		};
 
 		// Format function
 
@@ -1161,7 +1174,7 @@ OSREC.CurrencyFormatter =
 
 					--groupIndex;
 				}
-				
+
 				segment = segment.substring(0, segment.length-1);
 			}
 			else
@@ -1174,7 +1187,6 @@ OSREC.CurrencyFormatter =
 			var formattedNumber = f.frontPadding + segment + ( typeof splitNumber[1] === 'undefined' ? '' : (f.decimal + splitNumber[1]) ) + f.backPadding;
 
 			return formattedNumber.replace(/\!/g, symbol);
-
 		};
 
 		// Use encode function to work out pattern
@@ -1197,12 +1209,13 @@ OSREC.CurrencyFormatter =
 
 		return function(n)
 		{
+			if(isNaN(n)) { return valueOnError; }
 			var formattedNumber;
 			n = Number(n);
 			if(n > 0) { formattedNumber = format(n, positiveFormat); }
 			else if(n == 0) { formattedNumber = zero.replace('!', symbol); }
 			else { formattedNumber = format(n, negativeFormat);	}
-			return formattedNumber;
+			return ( typeof postFormatFunction === 'function' ? postFormatFunction(n, formattedNumber) : formattedNumber );
 		};
 
 	},
@@ -1254,7 +1267,7 @@ OSREC.CurrencyFormatter =
 
 		return formatterFunction(n);
 	},
-	
+
 	parse: function(str, p)
 	{
 		var decimal = OSREC.CurrencyFormatter.getFormatDetails(p).decimal;

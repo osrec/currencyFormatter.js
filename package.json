@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "babel currencyFormatter.js -d dist && npm run uglify",
-    "uglify": "uglifyjs dist/currencyFormatter.js --compress --mangle --output dist/currencyFormatter.min.js",
+    "uglify": "uglifyjs dist/currencyFormatter.js --compress --mangle --output dist/currencyFormatter.min.js && cp dist/currencyFormatter.min.js docs/currencyFormatter.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

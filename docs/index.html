@@ -2,14 +2,14 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />		
-		<script type='text/javascript' src='currencyFormatter.min.js'></script>	
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atelier-forest-dark.min.css">
+		<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+		<script type='text/javascript' src='currencyFormatter.min.js'></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atelier-seaside-light.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	</head>
 	<title>CurrencyFormatter.js by OSREC Financial</title>
-	
+
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,36 +19,36 @@
 	  ga('create', 'UA-84917321-1', 'auto');
 	  ga('send', 'pageview');
 
-	</script>	
-	
+	</script>
+
 	<script>
-		
+
 		hljs.initHighlightingOnLoad();
-		
+
 		window.onload = function()
 		{
 			//Example 1
-			
+
 			OSREC.CurrencyFormatter.formatAll
 			({
-				selector: '#result1 .money', 
+				selector: '#result1 .money',
 				currency: 'EUR'
 			});
-			
+
 			//Example 2
-			
+
 			OSREC.CurrencyFormatter.formatEach('#result2 .money');
-			
+
 			//Example 3
-			
+
 			var frenchEuroFormatter = OSREC.CurrencyFormatter.getFormatter
 			({
-				currency: 	'EUR', 
+				currency: 	'EUR',
 				locale: 	'fr',
 				symbol: 	'€',
 				decimal:	',',
 				group: 		'.',
-				pattern: 	'#,##0.00 !' 
+				pattern: 	'#,##0.00 !'
 
 			});
 
@@ -56,10 +56,10 @@
 
 			var formattedVal = frenchEuroFormatter(val);
 
-			document.getElementById('frenchEuroInput').value = formattedVal;			
-			
+			document.getElementById('frenchEuroInput').value = formattedVal;
+
 			//Example 4
-			
+
 			OSREC.CurrencyFormatter.formatAll
 			({
 				selector: '#result4 .money',
@@ -67,34 +67,34 @@
 				pattern: '#,##0.00 !;(#,##0.00 !);0.00 !'
 			});
 			// Populate supported CCYs
-			
+
 			var supportedCcys = '';
-			
-			for (var ccy in OSREC.CurrencyFormatter.symbols) 
+
+			for (var ccy in OSREC.CurrencyFormatter.symbols)
 			{
 				supportedCcys += "<div class='tag ccy left'>" + ccy + "</div><div class='tag ccy right'>" + OSREC.CurrencyFormatter.symbols[ccy] + "</div>";
 			}
-			
+
 			document.getElementById('supportedCurrencies').innerHTML =  supportedCcys + "<div class='clear'></div>";
-			
+
 			// Populate supported locales
-			
+
 			var supportedLocales = '';
-			
-			for (var locale in OSREC.CurrencyFormatter.locales) 
+
+			for (var locale in OSREC.CurrencyFormatter.locales)
 			{
 				supportedLocales += "<div class='tag locale'>" + locale + "</div>";
 			}
-			
-			document.getElementById('supportedLocales').innerHTML = supportedLocales + "<div class='clear'></div>";			
-			
-			
+
+			document.getElementById('supportedLocales').innerHTML = supportedLocales + "<div class='clear'></div>";
+
+
 		};
-			
+
 	</script>
-	
+
 	<style>
-		
+
 		html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}
 		article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }/* HTML5 display-role reset for older browsers */
 		body { font-size: 14px; color: #555; line-height: 1.5; background: #fff; }
@@ -102,57 +102,57 @@
 		blockquote, q {	quotes: none; }
 		blockquote:before, blockquote:after,q:before, q:after {	content: ''; content: none; }
 		table {	border-collapse: collapse;	border-spacing: 0; }
-		
+
 		html { overflow-y: scroll; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); } /* Keep the scrollbar always AND prevent grey tap blocks when clicking on iPad*/
 		.noscroll { overflow : hidden !important; }
 		body, input, textarea { font-family: 'Roboto', sans-serif; -webkit-font-smoothing: antialiased}
-		
+
 		a { text-decoration: none; color: #204a87; }
 		a:hover { color: #4e9a06; }
-		
-		.box { padding-bottom: 10px; border: 0px solid #6C5042; }
+
+		.box { padding-bottom: 5px; border: 0px solid #6C5042; }
 		.pointer { cursor: pointer; }
-		
-		
+
+
 		h2 { font-size: 180%;}
 		h3 { font-size: 160%;}
-		h4 { font-size: 130%; font-weight: bold;}
-		
+		h4 { font-size: 110%; font-weight: bold;}
+
 		h2.subheading { margin: 30px 0; padding-bottom: 10px; border-bottom: 1px solid #ddd;  }
-		
+
 		h4.subheading { margin-top: 40px; margin-bottom: 20px; padding: 10px; background: #4B73A6; color: #fff; }
-		
-		code { padding: 10px 30px !important; border-radius: 5px ; font-size: 14px; margin: 10px 0 !important; }
-		 
-		.result { padding: 30px 30px !important; border-radius: 5px ; font-size: 16px; color: #A8A19F; background: #1B1918; margin: 10px 0 !important; }
-		
-		.explain { font-size: 16px; line-height: 2; font-weight: 300} 
-		
+
+		code { padding: 10px 10px !important; border-radius: 5px ; font-size: 12px; margin: 10px 0 !important; }
+
+		.result { padding: 30px 30px !important; border-radius: 5px ; font-size: 14px; color: #282828; background: #f4fbf4; margin: 10px 0 !important; }
+
+		.explain { font-size: 16px; line-height: 2; font-weight: 300}
+
 		@media only screen and (min-width : 0px) and (max-width : 1019.9999px) /* Mobile */
 		{
 			h1 { font-size: 7vw; font-weight: bold;}
 			.main { padding: 0 20px; }
 		}
-		
+
 		@media only screen and (min-width : 1020px) /* Computer screens*/
 		{
 			h1 { font-size: 300%; font-weight: bold;}
 			.main { margin: 0 auto; width: 960px; }
 		}
-		
+
 		.code { font-family: monospace; color: #2585A8; word-wrap: break-word; }
-		
-		.codeHeader{ padding: 5px; float: left; background: #A28171; color: #fff; border-radius: 3px;}
-		
-		.clear { clear: both; } 
-		
+
+		.codeHeader{color: #304063; padding: 5px; border-bottom: 1px solid #eee; font-size: 90%}
+
+		.clear { clear: both; }
+
 		.tag { float: left; margin-bottom: 5px; padding: 5px; color: #fff; }
 		.tag.ccy.left { background: #E02D3E; }
 		.tag.ccy.right { background: #882932; margin-right: 5px; }
 		.tag.locale { background: #46B78D; border-radius: 3px; margin-right: 5px; }
-		
+
 	</style>
-	
+
 	<body>
 
 		<div style='padding: 100px 20px; margin-bottom: 50px; background: linear-gradient(#4D673B, #72D92A); box-shadow: 0px 0px 30px 5px rgba(0,0,0,0.3); color: #fff; text-shadow:0px 1px 0px #888888; '>
@@ -164,8 +164,8 @@
 				<h3 style='padding-bottom: 20px;'>155 currencies, 715 locales &amp; less than 7KB gzipped :)</h3>
 
 				<h4 style='padding-bottom: 20px;'>Works well with unusual formats, including the Indian Rupee</h4>
-				
-				
+
+
 				<div class='' style='padding-top: 10px;'>Made with &#9825; by</div>
 				<div class='' style='padding-top: 10px;'>
                                 	<a href='https://usebx.com'><img src='https://usebx.com/web/img/Bx.svg' style='height: 64px; margin-right: 10px;'></a>
@@ -173,24 +173,24 @@
 	                        </div>
 
 				</div>
-			
+
 		</div>
-		
+
 		<div class='main'>
 
 			<h2 class='subheading'>About</h2>
 
 			<p class='explain'>
 			CurrencyFormatter.js allows you to format numbers as currencies. It contains 155 currency definitions and 715 locale
-			definitions out of the box. It handles unusually formatted currencies, such as the INR. This library is now used 
-			by hedge funds, banks and a variety of other organisations across the world for the efficient formatting 
+			definitions out of the box. It handles unusually formatted currencies, such as the INR. This library is now used
+			by hedge funds, banks and a variety of other organisations across the world for the efficient formatting
 			of currencies in a wide range of applications.
 			</p>
 			<br/>
 
 			<p class='explain' style='padding: 15px; box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.3); background: #FFFDB9'>
 			This library was originally created by the Bx team while developing Bx @ <a style='font-weight: bold' href='https://usebx.com'>https://usebx.com</a>. Having found no library capable of formatting the more unusual currencies
-			they decided to create their own and release it under an MIT Licence. 
+			they decided to create their own and release it under an MIT Licence.
 			<br/>
 			&rarrhk; <a style='font-weight: bold' href='https://usebx.com'>Give Bx a try</a> if you ever need a tool for invoicing, expenses or project management :)
 			</p>
@@ -201,12 +201,12 @@
 			This library is maintained by <a style='font-weight: bold' href='https://osrec.co.uk'>OSREC Technologies</a> in London. Bugs and issues
 			should be reported via github. If you use the library, we appreciate a mention or a link back to https://osrec.co.uk :)
 			</p>
-			
+
 			<div class='' style='padding-top: 10px;'>
 				<a href='https://usebx.com'><img src='https://usebx.com/web/img/Bx.svg' style='height: 32px; margin-right: 10px;'></a>
 				<a href='https://osrec.co.uk'><img src='https://usebx.com/web/img/osrecIcon.png' style='height: 32px;'></a>
 			</div>
-				
+
 			<div>
 				<div style='padding: 20px 0;'><a href='https://github.com/osrec/currencyFormatter.js'>Find us on Github</a></div>
 				<iframe style='margin-bottom: 10px;' src="https://ghbtns.com/github-btn.html?user=osrec&repo=currencyFormatter.js&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
@@ -223,27 +223,27 @@
 			Clone Github Repository:
 			<br/>
 			<span class='code'>git clone https://github.com/osrec/currencyFormatter.js.git</span>
-			<br/>	
+			<br/>
 			<br/>
 			Install via npm:
 			<br/>
 			<div class='code'>npm install currencyformatter.js</div>
-			<br/>	
+			<br/>
 			Reference in your HTML as shown below - the library has no dependecies :)
 			</div>
 <pre><code class="html">
-&lt;script type='text/javascript' src='currencyFormatter.js'&gt;&lt;/script&gt;	
+&lt;script type='text/javascript' src='currencyFormatter.js'&gt;&lt;/script&gt;
 &lt;!--OR--&gt;
-&lt;script type='text/javascript' src='currencyFormatter.min.js'&gt;&lt;/script&gt;	
+&lt;script type='text/javascript' src='currencyFormatter.min.js'&gt;&lt;/script&gt;
 
-</code></pre>	
+</code></pre>
 
 <p class='explain' style='font-weight: bold;'>
 Also available via cdnjs.com (<a href='https://cdnjs.com/libraries/currencyformatter.js'>https://cdnjs.com/libraries/currencyformatter.js</a>)
 </p>
 
 			<h2 class='subheading'>Usage</h2>
-		
+
 
 <h4 class='subheading'>&rsaquo; Basic Formatting</h4>
 
@@ -253,15 +253,15 @@ Formatting a number is pretty straightforward with the <span class='code'>OSREC.
 The <span class='code'>parameters</span> can include the following:
 
 <pre><code class='javascript'>
-var parameters = 
-{ 
+var parameters =
+{
 	currency: 	'EUR', 			// If currency is not supplied, defaults to USD
 	symbol: 	'€',			// Overrides the currency's default symbol
 	locale: 	'fr',			// Overrides the currency's default locale (see supported locales)
 	decimal:	',',			// Overrides the locale's decimal character
 	group: 		'.',			// Overrides the locale's group character (thousand separator)
-	pattern: 	'#,##0.00 !'		// Overrides the locale's default display pattern 
-	
+	pattern: 	'#,##0.00 !'		// Overrides the locale's default display pattern
+
 	// The pattern follows standard unicode currency pattern notation.
 	// comma = group separator, dot = decimal separator, exclamation = currency symbol
 }
@@ -271,7 +271,7 @@ var parameters =
 </p>
 
 <p class='explain'>
-	
+
 Usually, you will not need to specify all the parameters, and can simply specify the currency (and the locale, if needed). The library is aware of the appropriate format to use for every currency and locale.
 
 <pre><code class='javascript'>
@@ -280,14 +280,14 @@ OSREC.CurrencyFormatter.format(2534234, { currency: 'EUR' }); // Returns 2.534.2
 OSREC.CurrencyFormatter.format(2534234, { currency: 'EUR', locale: 'fr' }); // Returns 2 534 234,00 &#x20ac;
 
 </code></pre>
- 
+
 </p>
 
-<h4 class='subheading'>&rsaquo; Example 1: Format all element values as currency</h4>
+<h4 class='subheading'>&rsaquo; Format all element values as currency</h4>
 
 <p class='explain'>
-If you need to convert all elements that contain numerical values into well formatted currencies, you can do this easily using 
-the <span class='code'>OSREC.CurrencyFormatter.formatAll(parameters)</span> method. Simply pass in your element selector via the <span class='code'>selector</span> parameter, along with the <span class='code'>currency</span> 
+If you need to convert all elements that contain numerical values into well formatted currencies, you can do this easily using
+the <span class='code'>OSREC.CurrencyFormatter.formatAll(parameters)</span> method. Simply pass in your element selector via the <span class='code'>selector</span> parameter, along with the <span class='code'>currency</span>
 (you can also override a whole bunch of additional parameters - see above for more details).
 </p>
 
@@ -312,7 +312,7 @@ the <span class='code'>OSREC.CurrencyFormatter.formatAll(parameters)</span> meth
 
 OSREC.CurrencyFormatter.formatAll(
 {
-	selector: '.money', 
+	selector: '.money',
 	currency: 'EUR'
 });
 
@@ -326,17 +326,17 @@ OSREC.CurrencyFormatter.formatAll(
 	<div class='money box'>1234536.32</div>
 	<div class='money box'>8798458.11</div>
 </div>
-</div>	
+</div>
 
 
 <!------------------------------------->
 
-<h4 class='subheading'>&rsaquo; Example 2: Format each element with a specific currency</h4>
+<h4 class='subheading'>&rsaquo; Format each element with a specific currency</h4>
 
 <p class='explain'>The <span class='code'>OSREC.CurrencyFormatter.formatEach(selector)</span> method can be used to update a range of different currency values on a page by specifying the currency in the <span class='code'>data-ccy</span> attribute.</p>
 
 <div style='padding: 5px;'>
-	
+
 <div class='codeHeader'>HTML</div>
 <div class='clear'></div>
 <pre><code class="html">
@@ -374,7 +374,7 @@ OSREC.CurrencyFormatter.formatEach('.money');
 
 <!------------------------------------->
 
-<h4 class='subheading'>&rsaquo; Example 3: Fully bespoke data formatter</h4>
+<h4 class='subheading'>&rsaquo; Fully bespoke data formatter</h4>
 
 <p class='explain'>The <span class='code'>OSREC.CurrencyFormatter.getFormatter(parameters)</span> method returns a bespoke formatting <em>function</em> that can be used to format currencies. <span style='font-weight: bold'>This is the most efficient way to format a large number of currencies.</span></p>
 
@@ -395,9 +395,9 @@ OSREC.CurrencyFormatter.formatEach('.money');
 <div class='codeHeader'>JavaScript</div>
 <div class='clear'></div>
 <pre><code class="javascript">
-// Once generated, the formatter below can used over 
+// Once generated, the formatter below can used over
 // and over again to format any number of currencies
-	
+
 var frenchEuroFormatter = OSREC.CurrencyFormatter.getFormatter
 ({
 	// If currency is not supplied, defaults to USD
@@ -405,21 +405,25 @@ var frenchEuroFormatter = OSREC.CurrencyFormatter.getFormatter
 
 	// Use to override the currency's default symbol
 	symbol: 	'€',
-	
+
 	// Use to override the currency's default locale - every locale has
 	// preconfigured decimal, group and pattern
 	locale: 	'fr',
-	
+
 	// Use to override the locale's default decimal character
 	decimal:	',',
-	
-	// Use to override the locale's default group (thousand separator) character	 
+
+	// Use to override the locale's default group (thousand separator) character
 	group: 		'.',
 
-	// Use to override the locale's default display pattern 
+	// Use to override the locale's default display pattern
 	// Note comma = group separator, dot = decimal separator, exclamation = symbol
 	// Follows standard unicode currency pattern
-	pattern: 	'#,##0.00 !' 
+	pattern: 	'#,##0.00 !',
+
+	// Return this value if the input value is not a valid number
+	// Defaults to '0'
+	valueOnError: 	'0'
 
 });
 
@@ -427,7 +431,7 @@ var val = document.getElementById('frenchEuroInput').value;
 
 var formattedVal = frenchEuroFormatter(val);
 
-document.getElementById('frenchEuroInput').value = formattedVal;	
+document.getElementById('frenchEuroInput').value = formattedVal;
 
 </code></pre>
 </div>
@@ -450,13 +454,13 @@ document.getElementById('frenchEuroInput').value = formattedVal;
 
 <!------------------------------------->
 
-<h4 class='subheading'>&rsaquo; Example 4: Negative and Zero Formats</h4>
+<h4 class='subheading'>&rsaquo; Negative and Zero Formats</h4>
 
-<p class='explain'>If you need to specify separate formats for negative numbers, positive numbers and zeros, you may do so by splitting them with a semi-colon like so: <span class='code'>positivePattern;negativePattern;zeroPattern</span>. 
+<p class='explain'>If you need to specify separate formats for negative numbers, positive numbers and zeros, you may do so by splitting them with a semi-colon like so: <span class='code'>positivePattern;negativePattern;zeroPattern</span>.
 The example below defines a bespoke pattern for the Swiss Franc (CHF), where the negative numbers are formatted with enclosing brackets and zeros are formatted to 2 decimal places.</p>
 
 <div style='padding: 5px;'>
-	
+
 <div class='codeHeader'>HTML</div>
 <div class='clear'></div>
 <pre><code class="html">
@@ -498,7 +502,7 @@ OSREC.CurrencyFormatter.formatAll
 
 <!------------------------------------->
 
-<h4 class='subheading'>&rsaquo; Example 5: Parsing</h4>
+<h4 class='subheading'>&rsaquo; Parsing</h4>
 
 <p class='explain'>If you have currency values formatted as text in a particular locale, use the <span class='code'>OSREC.CurrencyFormatter.parse()</span> function to convert to a <span class='code'>Number</span>.</p>
 
@@ -514,7 +518,76 @@ OSREC.CurrencyFormatter.parse('$ 11/25', { decimal: '/' }); // Returns 11.25
 </code></pre>
 </div>
 
+<!------------------------------------->
 
+<h4 class='subheading'>&rsaquo; Value on Error</h4>
+
+<p class='explain'>If the input value is not a valid number, the formatter will return '0'. You may override this as follows:</p>
+
+<div style='padding: 5px;'>
+
+<div class='codeHeader'>JavaScript</div>
+<div class='clear'></div>
+<pre><code class="javascript">
+OSREC.CurrencyFormatter.format('10', { currency: 'USD', valueOnError: 'Please enter a valid number!' });
+OSREC.CurrencyFormatter.format('abcd', { currency: 'USD', valueOnError: 'Please enter a valid number!' });
+</code></pre>
+</div>
+
+<div id='result6' style='padding: 5px;'>
+
+	<div class='codeHeader'>Result</div>
+	<div class='clear'></div>
+	<div class='result'>
+		<div>$10.00</div>
+		<div>Please enter a valid number!</div>
+	</div>
+</div>
+
+<!------------------------------------->
+
+<h4 class='subheading'>&rsaquo; Post Format Function</h4>
+
+<p class='explain'>Sometimes you may wish to post process your formatted numbers. For example, to make negative numbers appear red and positive numbers green. This can be easily done via the <span class='code'>postFormatFunction</span> option.
+	This function will be called, passing in the numerical value, along with the formatted string as arguments. NOTE: the function will NOT be called if the input value is not a valid number.
+</p>
+
+<div style='padding: 5px;'>
+
+<div class='codeHeader'>JavaScript</div>
+<div class='clear'></div>
+<pre><code class="javascript">
+var dollarFormatterWithColor = OSREC.CurrencyFormatter.getFormatter
+({
+	currency: 'USD',
+	postFormatFunction: function(value, formattedValue)
+	{
+		var textColor;
+		if(value < 0) { textColor = '#CC0000'; }
+		else { textColor = '#00CC00'; }
+		return "&lt;span style='color: " + textColor + "'&gt;" + formattedValue + "&lt;/span&gt;";
+	}
+});
+
+dollarFormatterWithColor(1234.56);
+dollarFormatterWithColor(-9876.54);
+
+</code></pre>
+</div>
+
+<div id='result7' style='padding: 5px;'>
+
+	<div class='codeHeader'>Result</div>
+	<div class='clear'></div>
+	<div class='result'>
+		<div>
+			<span style='color: #00CC00'>$1,234.56</span>
+		</div>
+		<div>
+			<span style='color: #CC0000'>-$9,876.54</span>
+		</div>
+	</div>
+</div>
 
 
 			<h2 class='subheading'>Supported Currencies</h2>
@@ -522,26 +595,26 @@ OSREC.CurrencyFormatter.parse('$ 11/25', { decimal: '/' }); // Returns 11.25
 			<p class='explain' style='margin-bottom: 30px'>
 			The library currently supports the following currencies straight out of the box :)
 			</p>
-			
-			<div id='supportedCurrencies'></div>		
-		
+
+			<div id='supportedCurrencies'></div>
+
 			<h2 class='subheading'>Supported Locales</h2>
 
 			<p class='explain' style='margin-bottom: 30px'>
 			We use the standard ISO 2 digit language and country codes to define locales (as per the <a href='http://cldr.unicode.org/'>Unicode Common Locale Data Repository</a>). The library supports the below locales (yes, all 715 of them!).
 			 <br/>
 			 <br/>
-			 In case you're not sure what a locale is, it is simply a set of parameters that define the standard language and regional preferences for someone using a 
-			 particular language, in a particular region. 
+			 In case you're not sure what a locale is, it is simply a set of parameters that define the standard language and regional preferences for someone using a
+			 particular language, in a particular region.
 			</p>
-			
-			<div id='supportedLocales'></div>	
+
+			<div id='supportedLocales'></div>
 
 
 </div>
 
 
-		
+
 	</body>
-	
+
 </html>
