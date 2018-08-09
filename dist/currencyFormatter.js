@@ -1068,7 +1068,7 @@ OSREC.CurrencyFormatter = {
 			locale = locales[locale.h];
 		} // Locale inheritance
 
-		symbol = p.symbol || symbols[currency] || currency;
+		symbol = typeof p.symbol === 'undefined' ? symbols[currency] || currency : p.symbol === null ? '' : p.symbol;
 		pattern = p.pattern || locale.p;
 		decimal = p.decimal || locale.d;
 		group = p.group || locale.g;
@@ -1179,7 +1179,7 @@ OSREC.CurrencyFormatter = {
 
 			var formattedNumber = f.frontPadding + segment + (typeof splitNumber[1] === 'undefined' ? '' : f.decimal + splitNumber[1]) + f.backPadding;
 
-			return formattedNumber.replace(/\!/g, symbol);
+			return formattedNumber.replace(/\!/g, symbol).trim();
 		};
 
 		// Use encode function to work out pattern
