@@ -1,6 +1,6 @@
 {
   "name": "currencyformatter.js",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A super simple currency formatting library by OSREC Technologies https://osrec.co.uk",
   "main": "dist/currencyFormatter.js",
   "directories": {
