@@ -126,6 +126,7 @@ OSREC.CurrencyFormatter = {
 		PLN: 'zł',
 		PYG: '₲',
 		QAR: 'ر.ق.‏',
+		RON: 'lei',
 		RSD: 'дин.',
 		RUB: '₽',
 		RWF: 'RF',
